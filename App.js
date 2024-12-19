@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import Home from "./screen/HomeScreen";
 import SearchScreen from "./screen/SearchScreen";
+import CategoriesScreen from "./screen/CategoriesScreen";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -18,6 +19,11 @@ export default function App() {
         <Stack.Screen
           name="SearchScreen"
           component={SearchScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="CategoriesScreen"
+          component={CategoriesScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

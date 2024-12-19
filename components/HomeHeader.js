@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Keyboard,
   SafeAreaView,
@@ -9,19 +9,33 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import TypeWriter from "react-native-typewriter";
 
 const HomeHeader = () => {
   const navigation = useNavigation();
+  const [messageInterval, setMessageInterval] = useState(0);
+  const messages = [
+    "Shoes",
+    "Men's Jeans",
+    "Shirts",
+    "T-Shirts",
+    "Luxury Products",
+  ];
   const icons = [
     { name: "notifications-outline", size: 24, color: "black" },
     { name: "search-outline", size: 24, color: "black" },
     { name: "person-outline", size: 24, color: "black" },
   ];
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMessageInterval((prev) => (prev + 1) % messages.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    // <SafeAreaView style={{ flex: 1 }}>
     <View style={styles.header}>
       <View style={styles.headerTop}>
         <View style={styles.headerLeft}>
@@ -29,30 +43,33 @@ const HomeHeader = () => {
         </View>
         <View style={styles.headerRight}>
           {icons.map((icon, i) => (
-            <TouchableOpacity>
+            <TouchableOpacity key={i}>
               <Ionicons
                 style={styles.icon}
                 name={icon.name}
                 size={icon.size}
                 color={icon.color}
-                key={i}
               />
             </TouchableOpacity>
           ))}
         </View>
       </View>
-      <View style={{ paddingHorizontal: 4 }}>
+      <View style={{}}>
         <TouchableOpacity onPress={() => navigation.navigate("SearchScreen")}>
           <View style={styles.searchSection}>
             <TouchableOpacity
               onPress={() => navigation.navigate("SearchScreen")}
             >
               <View style={styles.searchLeft}>
-                <Ionicons name="search" size="24" style={styles.searchIcon} />
-                <TextInput
-                  placeholder="Search for Clothes"
-                  style={styles.searchInput}
-                />
+                <Ionicons name="search" size={24} style={styles.searchIcon} />
+                <Text
+                  style={{ fontSize: 16, color: "#3f372f", fontWeight: 600 }}
+                >
+                  Search for{" "}
+                </Text>
+                <TypeWriter typing={1} style={styles.searchInput}>
+                  {messages[messageInterval]}
+                </TypeWriter>
               </View>
             </TouchableOpacity>
 
@@ -60,14 +77,14 @@ const HomeHeader = () => {
               <TouchableOpacity>
                 <Ionicons
                   name="camera-outline"
-                  size="24"
+                  size={24}
                   style={styles.searchIcon}
                 />
               </TouchableOpacity>
               <TouchableOpacity>
                 <Ionicons
                   name="mic-outline"
-                  size="24"
+                  size={24}
                   style={styles.searchIcon}
                 />
               </TouchableOpacity>
@@ -76,8 +93,6 @@ const HomeHeader = () => {
         </TouchableOpacity>
       </View>
     </View>
-
-    // </SafeAreaView>
   );
 };
 
@@ -85,9 +100,9 @@ export default HomeHeader;
 
 const styles = StyleSheet.create({
   header: {
-    // flex: 1,
     gap: 20,
-    padding: 16,
+    paddingVertical: 16,
+    paddingHorizontal: 8,
     backgroundColor: "#fff",
   },
   headerTop: {
@@ -99,7 +114,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   headerRight: {
-    // backgroundColor: "red",
     flexDirection: "row",
     alignItems: "center",
   },
@@ -116,7 +130,7 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 30,
     elevation: 6,
-    shadowColor: "#c2c2c2",
+    shadowColor: "#cbb18d",
     shadowOffset: 1,
     shadowOpacity: 0.4,
     shadowRadius: 2,
@@ -125,15 +139,15 @@ const styles = StyleSheet.create({
   searchIcon: {
     marginRight: 10,
   },
-  searchInput: {
-    // flex: 1,
-    width: "70%",
-    fontSize: 16,
-    color: "#000",
-  },
   searchLeft: {
     flexDirection: "row",
     alignItems: "center",
+    flex: 1,
+  },
+  searchInput: {
+    // flex: 1,
+    fontSize: 15,
+    color: "#000",
   },
   searchRight: {
     flexDirection: "row",
