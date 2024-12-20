@@ -1,7 +1,6 @@
 import { useNavigation } from "@react-navigation/core";
 import React, { useEffect, useState } from "react";
 import {
-  Keyboard,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -11,6 +10,7 @@ import {
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import TypeWriter from "react-native-typewriter";
+import SubCategoriesList from "./SubCategoriesList";
 
 const HomeHeader = () => {
   const navigation = useNavigation();
@@ -31,7 +31,7 @@ const HomeHeader = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setMessageInterval((prev) => (prev + 1) % messages.length);
-    }, 2000);
+    }, 4000);
     return () => clearInterval(interval);
   }, []);
 
@@ -54,24 +54,16 @@ const HomeHeader = () => {
           ))}
         </View>
       </View>
-      <View style={{}}>
+
+      <View style={styles.searchSectionContainer}>
         <TouchableOpacity onPress={() => navigation.navigate("SearchScreen")}>
           <View style={styles.searchSection}>
-            <TouchableOpacity
-              onPress={() => navigation.navigate("SearchScreen")}
-            >
-              <View style={styles.searchLeft}>
-                <Ionicons name="search" size={24} style={styles.searchIcon} />
-                <Text
-                  style={{ fontSize: 16, color: "#3f372f", fontWeight: 600 }}
-                >
-                  Search for{" "}
-                </Text>
-                <TypeWriter typing={1} style={styles.searchInput}>
-                  {messages[messageInterval]}
-                </TypeWriter>
-              </View>
-            </TouchableOpacity>
+            <View style={styles.searchLeft}>
+              <Ionicons name="search" size={24} style={styles.searchIcon} />
+              <TypeWriter typing={1} style={styles.searchInput}>
+                Search for {messages[messageInterval]}
+              </TypeWriter>
+            </View>
 
             <View style={styles.searchRight}>
               <TouchableOpacity>
@@ -92,6 +84,11 @@ const HomeHeader = () => {
           </View>
         </TouchableOpacity>
       </View>
+
+      {/* SubCategoriesList with flex: 1 to take available space */}
+      <View style={{ height: 200 }}>
+        <SubCategoriesList />
+      </View>
     </View>
   );
 };
@@ -100,7 +97,7 @@ export default HomeHeader;
 
 const styles = StyleSheet.create({
   header: {
-    gap: 20,
+    // flex: 1,
     paddingVertical: 16,
     paddingHorizontal: 8,
     backgroundColor: "#fff",
@@ -124,6 +121,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
+  searchSectionContainer: {},
   searchSection: {
     flexDirection: "row",
     backgroundColor: "#f6f6f6",
@@ -131,7 +129,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     elevation: 6,
     shadowColor: "#cbb18d",
-    shadowOffset: 1,
+    shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.4,
     shadowRadius: 2,
     justifyContent: "space-between",
@@ -145,7 +143,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   searchInput: {
-    // flex: 1,
     fontSize: 15,
     color: "#000",
   },

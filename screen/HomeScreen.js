@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import HomeHeader from "../components/HomeHeader";
 import CategoriesTab from "../components/CategoriesTab";
+import BottomNavigation from "../components/BottomNavigation";
 
 const Home = () => {
   return (
@@ -18,10 +19,20 @@ const Home = () => {
           <HomeHeader />
           <CategoriesTab />
         </View>
+        <View style={styles.bottomNavigation}>
+          <BottomNavigation />
+        </View>
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );
 };
 
 export default Home;
-const styles = StyleSheet.create({});
+
+const styles = StyleSheet.create({
+  bottomNavigation: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+  },
+});
