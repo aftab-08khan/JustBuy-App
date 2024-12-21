@@ -9,19 +9,17 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { FashionData } from "../data/fashiondata";
-
-const SubCategoriesList = () => {
-  const Fashiondata = FashionData();
+const SubCategoriesList = ({ data }) => {
+  // const Data = data;
 
   const renderItem = ({ item }) => (
     <TouchableOpacity>
       <View style={styles.itemContainer}>
         <View style={styles.imageContainer}>
           <LinearGradient
-            colors={["#92816e", "#ede3d8"]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
+            colors={["#9e8666", "#d1b999", "#ede3d8", "#f9f6f2"]}
+            start={{ x: 0, y: 1 }}
+            end={{ x: 0, y: 0 }}
             style={styles.gradient}
           >
             <Image source={item.image} style={styles.itemImage} />
@@ -35,7 +33,7 @@ const SubCategoriesList = () => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={Fashiondata}
+        data={data}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
         horizontal
@@ -52,9 +50,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginTop: 12,
+    marginTop: 8,
     paddingHorizontal: 10,
-    backgroundColor: "#fff",
   },
   itemContainer: {
     marginRight: 20,
@@ -62,18 +59,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   imageContainer: {
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     justifyContent: "center",
     alignItems: "center",
   },
   itemImage: {
-    width: 50,
-    height: 50,
+    width: 40,
+    marginTop: 20,
+    height: 80,
   },
   itemTitle: {
-    fontSize: 14,
-    fontWeight: "bold",
+    fontSize: 12,
+    fontWeight: 500,
     textAlign: "center",
   },
   gradient: {
@@ -81,7 +79,8 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 10,
+    borderBottomRightRadius: 6,
+    borderBottomLeftRadius: 6,
   },
 });
 

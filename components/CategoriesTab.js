@@ -57,7 +57,6 @@ const CategoriesTab = () => {
     <View
       style={{
         flexDirection: "row",
-        alignItems: "center",
       }}
     >
       <FlatList
@@ -67,7 +66,11 @@ const CategoriesTab = () => {
         style={styles.CategoriesList}
         contentContainerStyle={styles.categoriesRow}
       />
-      <TouchableOpacity onPress={() => navigation.navigate("CategoriesScreen")}>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate("CategoriesScreen", { title: "Categories" })
+        }
+      >
         <Ionicons
           name="grid-outline"
           size={24}
@@ -92,6 +95,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingHorizontal: 10,
     overflow: "hidden",
+    marginTop: -12,
   },
   activeTab: {
     backgroundColor: "#9e8666",

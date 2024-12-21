@@ -1,16 +1,8 @@
 import { useNavigation } from "@react-navigation/core";
 import React, { useEffect, useState } from "react";
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import TypeWriter from "react-native-typewriter";
-import SubCategoriesList from "./SubCategoriesList";
 
 const HomeHeader = () => {
   const navigation = useNavigation();
@@ -84,11 +76,6 @@ const HomeHeader = () => {
           </View>
         </TouchableOpacity>
       </View>
-
-      {/* SubCategoriesList with flex: 1 to take available space */}
-      <View style={{ height: 200 }}>
-        <SubCategoriesList />
-      </View>
     </View>
   );
 };
@@ -121,7 +108,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
-  searchSectionContainer: {},
   searchSection: {
     flexDirection: "row",
     backgroundColor: "#f6f6f6",
@@ -133,6 +119,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.4,
     shadowRadius: 2,
     justifyContent: "space-between",
+    marginTop: 16,
   },
   searchIcon: {
     marginRight: 10,

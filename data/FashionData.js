@@ -1,5 +1,5 @@
-import MensJeans from "../assets/subCategoriesFashion/mensjeans.png"; // Corrected the typo in folder name
-export const FashionData = [
+import MensJeans from "../assets/subCategroiesFashion/mensjeans.png";
+export const FashionData1 = [
   {
     id: 1,
     title: "Jeans",
@@ -48,6 +48,8 @@ export const FashionData = [
       "https://images.unsplash.com/photo-1529810313688-44ea1c2d81d3?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8JTIyRm9vdHdlYXIlMjIlMkN8ZW58MHx8MHx8fDA%3D",
     category: "Accessories",
   },
+];
+export const FashionData2 = [
   {
     id: 8,
     title: "Watches",
