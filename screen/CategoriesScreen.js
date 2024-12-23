@@ -10,6 +10,7 @@ import {
 import Ionicons from "react-native-vector-icons/Ionicons";
 import CartAndWishList from "../components/CartAndWishList";
 import AllCategroies from "../components/AllCategroies";
+import SingleCategroiesList from "../components/SingleCategroiesList";
 
 const CategoriesScreen = () => {
   const navigation = useNavigation();
@@ -41,7 +42,9 @@ const CategoriesScreen = () => {
 
       <View style={styles.content}>
         <AllCategroies />
-        <View style={{ width: "80%", backgroundColor: "red" }}></View>
+        <View style={{ width: "80%", backgroundColor: "red" }}>
+          <SingleCategroiesList />
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -84,6 +87,7 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingLeft: 0,
     paddingBottom: 0,
+    flexDirection: "row",
   },
 });
 

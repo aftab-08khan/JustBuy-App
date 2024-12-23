@@ -107,3 +107,130 @@ export const FashionData2 = [
     category: "Men's Wear",
   },
 ];
+export const MenCategoriesData = [
+  {
+    heading: "Winter Must Haves",
+    categories: [
+      {
+        category: "Sweaters",
+        image: MensJeans,
+      },
+      {
+        category: "Jackets",
+        image: MensJeans,
+      },
+      {
+        category: "Coats",
+        image: MensJeans,
+      },
+      {
+        category: "Thermal Wear",
+        image: MensJeans,
+      },
+      {
+        category: "Hats & Gloves",
+        image: MensJeans,
+      },
+    ],
+  },
+  {
+    heading: "Casual Wear",
+    categories: [
+      {
+        category: "T-shirts",
+        image: "https://example.com/images/tshirts.jpg",
+      },
+      {
+        category: "Shirts",
+        image: "https://example.com/images/shirts.jpg",
+      },
+      {
+        category: "Jeans",
+        image: "https://example.com/images/jeans.jpg",
+      },
+      {
+        category: "Chinos",
+        image: "https://example.com/images/chinos.jpg",
+      },
+      {
+        category: "Shorts",
+        image: "https://example.com/images/shorts.jpg",
+      },
+    ],
+  },
+  {
+    heading: "Work Wear",
+    categories: [
+      {
+        category: "Blazers",
+        image: "https://example.com/images/blazers.jpg",
+      },
+      {
+        category: "Formal Shirts",
+        image: "https://example.com/images/formal_shirts.jpg",
+      },
+      {
+        category: "Dress Pants",
+        image: "https://example.com/images/dress_pants.jpg",
+      },
+      {
+        category: "Suit",
+        image: "https://example.com/images/suit.jpg",
+      },
+      {
+        category: "Dress Shoes",
+        image: "https://example.com/images/dress_shoes.jpg",
+      },
+    ],
+  },
+  {
+    heading: "Occasion Wear",
+    categories: [
+      {
+        category: "Suits",
+        image: "https://example.com/images/suits.jpg",
+      },
+      {
+        category: "Tuxedos",
+        image: "https://example.com/images/tuxedos.jpg",
+      },
+      {
+        category: "Dress Shirts",
+        image: "https://example.com/images/dress_shirts.jpg",
+      },
+      {
+        category: "Vests",
+        image: "https://example.com/images/vests.jpg",
+      },
+      {
+        category: "Bow Ties",
+        image: "https://example.com/images/bow_ties.jpg",
+      },
+    ],
+  },
+  {
+    heading: "Sport Wear",
+    categories: [
+      {
+        category: "Active T-shirts",
+        image: "https://example.com/images/active_tshirts.jpg",
+      },
+      {
+        category: "Gym Shorts",
+        image: "https://example.com/images/gym_shorts.jpg",
+      },
+      {
+        category: "Running Shoes",
+        image: "https://example.com/images/running_shoes.jpg",
+      },
+      {
+        category: "Tracksuits",
+        image: "https://example.com/images/tracksuits.jpg",
+      },
+      {
+        category: "Sports Jackets",
+        image: "https://example.com/images/sports_jackets.jpg",
+      },
+    ],
+  },
+];
