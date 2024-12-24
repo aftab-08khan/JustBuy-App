@@ -7,51 +7,78 @@ import {
   StyleSheet,
   Image,
 } from "react-native";
-import { MenCategoriesData } from "../data/FashionData";
 
-const SingleCategoriesList = () => {
-  const [data, setData] = useState([]);
+const SingleCategoriesList = ({ categoriesTitle }) => {
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const shirtCategory = MenCategoriesData;
-
   useEffect(() => {
-    if (shirtCategory) {
-      setData(shirtCategory);
+    const fetchSingleCategories = async () => {
+      try {
+        const response = await fetch(
+          `https://aftab-08khan.github.io/JustBuyApi/${categoriesTitle}.json`
+        );
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (categoriesTitle) {
+      setLoading(true);
+      fetchSingleCategories();
     }
-    setLoading(false);
-  }, []);
+  }, [categoriesTitle]);
+
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
+
+  if (!data || !data[categoriesTitle]) {
+    return (
+      <View style={styles.container}>
+        <Text>No data found for {categoriesTitle}</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
-      {loading ? (
-        <ActivityIndicator size="large" color="#0000ff" />
-      ) : (
-        <FlatList
-          data={data}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item, index }) => {
-            return (
-              <View style={styles.sectionContainer} key={index}>
-                <Text style={styles.heading}>{item.heading}</Text>
-                <View style={styles.categoryList}>
-                  {item.categories.map((category, idx) => (
-                    <View style={styles.item} key={idx}>
-                      <Image
-                        source={({ uri: category.image }, category.image)}
-                        style={styles.image}
-                      />
-                      <Text style={styles.categoryName}>
-                        {category.category}
-                      </Text>
-                    </View>
-                  ))}
+      <FlatList
+        data={data[categoriesTitle]}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => (
+          <View style={styles.sectionContainer}>
+            <Text style={styles.heading}>{item.heading}</Text>
+            <View style={styles.categoryList}>
+              {item.categories?.map((category, idx) => (
+                <View style={styles.item} key={idx}>
+                  <View style={styles.imageView}>
+                    <Image
+                      source={
+                        category.image
+                          ? { uri: category.image }
+                          : require("../assets/icons/fireIcon.png")
+                      }
+                      style={styles.image}
+                    />
+                  </View>
+                  <Text style={styles.categoryName}>
+                    {category.category || "Unknown"}
+                  </Text>
                 </View>
-              </View>
-            );
-          }}
-        />
-      )}
+              ))}
+            </View>
+          </View>
+        )}
+      />
     </View>
   );
 };
@@ -63,7 +90,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   sectionContainer: {
-    marginBottom: 30,
+    marginBottom: 20,
   },
   heading: {
     fontSize: 18,
@@ -81,17 +108,25 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 15,
   },
+  imageView: {
+    width: 80,
+    height: 80,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#d6c2a6",
+    borderRadius: 50,
+    overflow: "hidden",
+  },
   image: {
-    width: 50,
-    height: 50,
+    width: "100%",
+    height: "100%",
     resizeMode: "cover",
-    borderRadius: 50, // Make the image round
-    marginBottom: 5,
   },
   categoryName: {
     fontSize: 12,
     fontWeight: "bold",
     textAlign: "center",
+    letterSpacing: 0.4,
   },
 });
 

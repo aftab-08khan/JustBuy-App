@@ -1,5 +1,5 @@
 import { useNavigation, useRoute } from "@react-navigation/core";
-import React from "react";
+import React, { useState } from "react";
 import {
   SafeAreaView,
   Text,
@@ -16,12 +16,14 @@ const CategoriesScreen = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const { title } = route.params;
+  const [categoriesTitle, setCategoriesTitle] = useState(null);
 
+  const handleCategoriesTitle = (title) => {
+    setCategoriesTitle(title);
+  };
   return (
     <SafeAreaView style={styles.container}>
-      {/* Header */}
       <View style={styles.header}>
-        {/* Back Button */}
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={styles.backButton}
@@ -41,9 +43,9 @@ const CategoriesScreen = () => {
       </View>
 
       <View style={styles.content}>
-        <AllCategroies />
+        <AllCategroies onPress={handleCategoriesTitle} />
         <View style={{ width: "80%", backgroundColor: "red" }}>
-          <SingleCategroiesList />
+          <SingleCategroiesList categoriesTitle={categoriesTitle} />
         </View>
       </View>
     </SafeAreaView>

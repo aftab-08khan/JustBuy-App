@@ -113,23 +113,28 @@ export const MenCategoriesData = [
     categories: [
       {
         category: "Sweaters",
-        image: MensJeans,
+        image:
+          "https://i.pinimg.com/236x/59/82/26/59822697df86afa4d644ecb4078b0b16.jpg",
       },
       {
         category: "Jackets",
-        image: MensJeans,
+        image:
+          "https://images.unsplash.com/photo-1731004270657-61c53047f727?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fG1lbnMlMjBqYWNrZXR8ZW58MHx8MHx8fDA%3D",
       },
       {
         category: "Coats",
-        image: MensJeans,
+        image:
+          "https://i.pinimg.com/236x/7c/8b/b5/7c8bb5d5bfada22ba60aea87a487762b.jpg",
       },
       {
         category: "Thermal Wear",
-        image: MensJeans,
+        image:
+          "https://i.pinimg.com/236x/b7/4d/a9/b74da93da0fe44bb4ce3eefd8699e660.jpg",
       },
       {
         category: "Hats & Gloves",
-        image: MensJeans,
+        image:
+          "https://i.pinimg.com/236x/45/05/22/450522951d865e5eaff388242dab7323.jpg",
       },
     ],
   },
@@ -138,23 +143,28 @@ export const MenCategoriesData = [
     categories: [
       {
         category: "T-shirts",
-        image: "https://example.com/images/tshirts.jpg",
+        image:
+          "https://i.pinimg.com/236x/91/74/4a/91744a7cdd412bb1b2ec9feadba3bfa9.jpg",
       },
       {
         category: "Shirts",
-        image: "https://example.com/images/shirts.jpg",
+        image:
+          "https://i.pinimg.com/474x/a3/f9/3a/a3f93a71bac3d59a51aad3ae9df4f235.jpg",
       },
       {
         category: "Jeans",
-        image: "https://example.com/images/jeans.jpg",
+        image:
+          "https://i.pinimg.com/236x/93/d5/c4/93d5c498f9800930a8012a4a53bdbaec.jpg",
       },
       {
         category: "Chinos",
-        image: "https://example.com/images/chinos.jpg",
+        image:
+          "https://i.pinimg.com/236x/35/35/1f/35351ff641c1c022794410ff062b63ea.jpg",
       },
       {
         category: "Shorts",
-        image: "https://example.com/images/shorts.jpg",
+        image:
+          "https://i.pinimg.com/236x/96/d4/a3/96d4a33548ea12732e071a4a5144d237.jpg",
       },
     ],
   },
@@ -163,23 +173,28 @@ export const MenCategoriesData = [
     categories: [
       {
         category: "Blazers",
-        image: "https://example.com/images/blazers.jpg",
+        image:
+          "https://i.pinimg.com/236x/37/9d/23/379d237045a808dde903be7b0e189db4.jpg",
       },
       {
         category: "Formal Shirts",
-        image: "https://example.com/images/formal_shirts.jpg",
+        image:
+          "https://i.pinimg.com/236x/3e/5c/00/3e5c004b627054fd74ec184ddc27ac90.jpg",
       },
       {
         category: "Dress Pants",
-        image: "https://example.com/images/dress_pants.jpg",
+        image:
+          "https://i.pinimg.com/236x/9b/35/13/9b3513c3c151ab66e66e10a2c4237ce3.jpg",
       },
       {
         category: "Suit",
-        image: "https://example.com/images/suit.jpg",
+        image:
+          "https://i.pinimg.com/236x/15/91/bd/1591bd32ba4e5c6b8e7ab9df6e1790d7.jpg",
       },
       {
         category: "Dress Shoes",
-        image: "https://example.com/images/dress_shoes.jpg",
+        image:
+          "https://i.pinimg.com/236x/c6/c3/fe/c6c3fee84c4cd95144123803c8c9f3d6.jpg",
       },
     ],
   },
@@ -188,23 +203,28 @@ export const MenCategoriesData = [
     categories: [
       {
         category: "Suits",
-        image: "https://example.com/images/suits.jpg",
+        image:
+          "https://i.pinimg.com/236x/2f/c9/6b/2fc96ba0ef94e1c81dfac890454e4fcb.jpg",
       },
       {
         category: "Tuxedos",
-        image: "https://example.com/images/tuxedos.jpg",
+        image:
+          "https://i.pinimg.com/236x/d2/27/7a/d2277a1d53867256540b4432ed81b092.jpg",
       },
       {
         category: "Dress Shirts",
-        image: "https://example.com/images/dress_shirts.jpg",
+        image:
+          "https://i.pinimg.com/474x/76/d7/b9/76d7b981d6595af8d096c0c568f0c402.jpg",
       },
       {
         category: "Vests",
-        image: "https://example.com/images/vests.jpg",
+        image:
+          "https://i.pinimg.com/236x/b8/cb/8f/b8cb8f6b451343f72fe4aeb952ba79b7.jpg",
       },
       {
         category: "Bow Ties",
-        image: "https://example.com/images/bow_ties.jpg",
+        image:
+          "https://i.pinimg.com/236x/42/1a/44/421a44a986ab3b0e7b91d945a5d253b0.jpg",
       },
     ],
   },
@@ -213,23 +233,28 @@ export const MenCategoriesData = [
     categories: [
       {
         category: "Active T-shirts",
-        image: "https://example.com/images/active_tshirts.jpg",
+        image:
+          "https://i.pinimg.com/236x/72/bc/d0/72bcd0a4226cc89e843dea8bfcceef20.jpg",
       },
       {
         category: "Gym Shorts",
-        image: "https://example.com/images/gym_shorts.jpg",
+        image:
+          "https://i.pinimg.com/236x/a9/17/ae/a917ae847816c91b8864f905026e8edc.jpg",
       },
       {
         category: "Running Shoes",
-        image: "https://example.com/images/running_shoes.jpg",
+        image:
+          "https://i.pinimg.com/236x/d4/3c/95/d43c95a4484ec9b9e5fb611c0be36d68.jpg",
       },
       {
         category: "Tracksuits",
-        image: "https://example.com/images/tracksuits.jpg",
+        image:
+          "https://i.pinimg.com/236x/5d/aa/4d/5daa4d517d56c800e103e2ea6d90e105.jpg",
       },
       {
         category: "Sports Jackets",
-        image: "https://example.com/images/sports_jackets.jpg",
+        image:
+          "https://i.pinimg.com/236x/ac/18/62/ac186285639c43c5194c3823f19bba9d.jpg",
       },
     ],
   },
