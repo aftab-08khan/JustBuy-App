@@ -3,45 +3,77 @@ import {
   View,
   Text,
   FlatList,
-  ActivityIndicator,
   StyleSheet,
   Image,
+  TouchableOpacity,
 } from "react-native";
+
+const SkeletonLoader = () => {
+  return (
+    <View style={styles.sectionContainer}>
+      <View style={styles.skeletonHeading} />
+
+      <View style={styles.categoryList}>
+        {[1, 2, 3, 4, 5].map((_, idx) => (
+          <TouchableOpacity key={idx} style={styles.item}>
+            <View style={styles.skeletonImageContainer}>
+              <View style={styles.skeletonImage} />
+            </View>
+            <View style={styles.skeletonCategoryName} />
+          </TouchableOpacity>
+        ))}
+      </View>
+    </View>
+  );
+};
 
 const SingleCategoriesList = ({ categoriesTitle }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  let endpoint = categoriesTitle || "trending";
+
   useEffect(() => {
     const fetchSingleCategories = async () => {
+      if (!endpoint) {
+        setLoading(false);
+        return;
+      }
+
       try {
         const response = await fetch(
-          `https://aftab-08khan.github.io/JustBuyApi/${categoriesTitle}.json`
+          `https://aftab-08khan.github.io/JustBuyApi/${endpoint}.json`
         );
+
         const result = await response.json();
         setData(result);
       } catch (error) {
         console.error("Error fetching categories:", error);
       } finally {
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
       }
     };
 
-    if (categoriesTitle) {
-      setLoading(true);
-      fetchSingleCategories();
-    }
-  }, [categoriesTitle]);
+    setLoading(true);
+    fetchSingleCategories();
+  }, [endpoint]);
 
   if (loading) {
     return (
       <View style={styles.container}>
-        <ActivityIndicator size="large" color="#0000ff" />
+        <FlatList
+          data={[1, 2, 3, 4, 5]}
+          renderItem={() => <SkeletonLoader />}
+          keyExtractor={(item) => item.toString()}
+          // style={styles.skeletonContainer}
+        />
       </View>
     );
   }
 
-  if (!data || !data[categoriesTitle]) {
+  if (!data?.[endpoint]) {
     return (
       <View style={styles.container}>
         <Text>No data found for {categoriesTitle}</Text>
@@ -52,14 +84,15 @@ const SingleCategoriesList = ({ categoriesTitle }) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={data[categoriesTitle]}
+        showsVerticalScrollIndicator={false}
+        data={data[endpoint]}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
           <View style={styles.sectionContainer}>
             <Text style={styles.heading}>{item.heading}</Text>
             <View style={styles.categoryList}>
               {item.categories?.map((category, idx) => (
-                <View style={styles.item} key={idx}>
+                <TouchableOpacity style={styles.item} key={idx}>
                   <View style={styles.imageView}>
                     <Image
                       source={
@@ -73,7 +106,7 @@ const SingleCategoriesList = ({ categoriesTitle }) => {
                   <Text style={styles.categoryName}>
                     {category.category || "Unknown"}
                   </Text>
-                </View>
+                </TouchableOpacity>
               ))}
             </View>
           </View>
@@ -88,6 +121,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     backgroundColor: "#fff",
+    paddingTop: 0,
   },
   sectionContainer: {
     marginBottom: 20,
@@ -127,6 +161,37 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     letterSpacing: 0.4,
+  },
+  skeletonHeading: {
+    width: "60%",
+    height: 18,
+    backgroundColor: "#e0e0e0",
+    marginBottom: 10,
+    borderRadius: 4,
+  },
+  skeletonItem: {
+    marginVertical: 10,
+    alignItems: "center",
+  },
+  skeletonImageContainer: {
+    width: 80,
+    height: 80,
+    backgroundColor: "#e0e0e0",
+    borderRadius: 50,
+    overflow: "hidden",
+  },
+  skeletonImage: {
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#e0e0e0",
+    borderRadius: 50,
+  },
+  skeletonCategoryName: {
+    width: 60,
+    height: 12,
+    marginTop: 10,
+    backgroundColor: "#e0e0e0",
+    borderRadius: 4,
   },
 });
 

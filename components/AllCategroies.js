@@ -6,12 +6,21 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
+  ActivityIndicator,
 } from "react-native";
-import FireIcon from "../assets/icons/fireIcon.png"; // Local asset example
+import FireIcon from "../assets/icons/fireIcon.png";
+
+const SkeletonLoader = () => (
+  <View style={styles.skeletonItem}>
+    <View style={styles.skeletonImage} />
+    <View style={styles.skeletonText} />
+  </View>
+);
 
 const AllCategories = ({ onPress }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [allCategoriesData, setAllCategoriesData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchCategoriesData = async () => {
@@ -26,6 +35,10 @@ const AllCategories = ({ onPress }) => {
         ]);
       } catch (error) {
         console.error(error);
+      } finally {
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
       }
     };
 
@@ -47,7 +60,8 @@ const AllCategories = ({ onPress }) => {
         ]}
         key={index}
         onPress={() => {
-          return [setActiveIndex(index), onPress(item.link)];
+          setActiveIndex(index);
+          onPress(item.link);
         }}
       >
         {isActive && <View style={styles.activeBorder} />}
@@ -65,12 +79,20 @@ const AllCategories = ({ onPress }) => {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={allCategoriesData}
-        renderItem={renderItem}
-        keyExtractor={(item, index) => index.toString()}
-        showsVerticalScrollIndicator={false}
-      />
+      {isLoading ? (
+        <FlatList
+          data={[1, 2, 3, 4, 5, 6, 7]}
+          renderItem={() => <SkeletonLoader />}
+          keyExtractor={(item) => item.toString()}
+        />
+      ) : (
+        <FlatList
+          data={allCategoriesData}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => index.toString()}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
     </View>
   );
 };
@@ -98,6 +120,8 @@ const styles = StyleSheet.create({
     height: "60%",
     width: 8,
     backgroundColor: "#4f4333",
+    borderTopRightRadius: 4,
+    borderBottomRightRadius: 4,
   },
   nextStyle: {
     borderTopRightRadius: 12,
@@ -119,13 +143,29 @@ const styles = StyleSheet.create({
   categoryImage: {
     width: 80,
     height: 60,
-    // marginBottom: -10,
   },
   categoryText: {
     marginTop: 6,
     fontSize: 14,
     color: "#191500",
-    letterSpacing: 1,
+    letterSpacing: 0.2,
+  },
+  skeletonItem: {
+    marginVertical: 10,
+    alignItems: "center",
+  },
+  skeletonImage: {
+    width: 80,
+    height: 60,
+    backgroundColor: "#e0e0e0",
+    borderRadius: 8,
+  },
+  skeletonText: {
+    width: 60,
+    height: 12,
+    marginTop: 10,
+    backgroundColor: "#e0e0e0",
+    borderRadius: 4,
   },
 });
 

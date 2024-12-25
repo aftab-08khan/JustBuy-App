@@ -1,9 +1,9 @@
 import { useNavigation } from "@react-navigation/core";
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import TypeWriter from "react-native-typewriter";
-
+import Logo from "../assets/icon.png";
 const HomeHeader = () => {
   const navigation = useNavigation();
   const [messageInterval, setMessageInterval] = useState(0);
@@ -31,7 +31,7 @@ const HomeHeader = () => {
     <View style={styles.header}>
       <View style={styles.headerTop}>
         <View style={styles.headerLeft}>
-          <Text style={styles.logoText}>Logo</Text>
+          <Image style={styles.logo} source={Logo}></Image>
         </View>
         <View style={styles.headerRight}>
           {icons.map((icon, i) => (
@@ -104,9 +104,11 @@ const styles = StyleSheet.create({
   icon: {
     marginHorizontal: 10,
   },
-  logoText: {
-    fontSize: 18,
-    fontWeight: "bold",
+  logo: {
+    width: 160,
+    height: 50,
+    marginLeft: -16,
+    // backgroundColor: "red",
   },
   searchSection: {
     flexDirection: "row",

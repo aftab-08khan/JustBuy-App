@@ -78,11 +78,12 @@ const styles = StyleSheet.create({
     // elevation: 3,
   },
   title: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "bold",
-    color: "#8a765a",
+    color: "#3f372f",
     flex: 1,
     textAlign: "center",
+    letterSpacing: 1,
   },
   content: {
     flex: 1,
