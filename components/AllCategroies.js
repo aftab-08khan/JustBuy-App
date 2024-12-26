@@ -9,6 +9,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import FireIcon from "../assets/icons/fireIcon.png";
+import { useTheme } from "../context/themeContext";
 
 const SkeletonLoader = () => (
   <View style={styles.skeletonItem}>
@@ -19,9 +20,9 @@ const SkeletonLoader = () => (
 
 const AllCategories = ({ onPress }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [allCategoriesData, setAllCategoriesData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
+  // const [allCategoriesData, setAllCategoriesData] = useState([]);
+  const { allCategoriesData, setAllCategoriesData, isLoading, setIsLoading } =
+    useTheme();
   useEffect(() => {
     const fetchCategoriesData = async () => {
       try {
@@ -29,10 +30,15 @@ const AllCategories = ({ onPress }) => {
           "https://aftab-08khan.github.io/JustBuyApi/AllCategories.json"
         );
         const result = await response.json();
-        setAllCategoriesData([
-          { img: FireIcon, title: "Trending", link: "trending" },
+        const combinedData = [
+          {
+            img: require("../assets/icons/fireIcon.png"),
+            title: "Trending",
+            link: "trending",
+          },
           ...result.AllCategories,
-        ]);
+        ];
+        setAllCategoriesData(combinedData);
       } catch (error) {
         console.error(error);
       } finally {

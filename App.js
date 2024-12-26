@@ -7,42 +7,45 @@ import SearchScreen from "./screen/SearchScreen";
 import CategoriesScreen from "./screen/CategoriesScreen";
 import CartScreen from "./screen/CartScreen";
 import WishListScreen from "./screen/WishListScreen";
+import { ThemeContext } from "./context/themeContext";
 
 export default function App() {
   const Stack = createStackNavigator();
   return (
-    <View style={{ flex: 1 }}>
-      <StatusBar style="dark" />
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="HomeScreen">
-          <Stack.Screen
-            name="HomeScreen"
-            component={Home}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="SearchScreen"
-            component={SearchScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="CategoriesScreen"
-            component={CategoriesScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="CartScreen"
-            component={CartScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="WishListScreen"
-            component={WishListScreen}
-            options={{ headerShown: false }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </View>
+    <ThemeContext>
+      <View style={{ flex: 1 }}>
+        <StatusBar style="dark" />
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="HomeScreen">
+            <Stack.Screen
+              name="HomeScreen"
+              component={Home}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="SearchScreen"
+              component={SearchScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="CategoriesScreen"
+              component={CategoriesScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="CartScreen"
+              component={CartScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="WishListScreen"
+              component={WishListScreen}
+              options={{ headerShown: false }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </View>
+    </ThemeContext>
   );
 }
 

@@ -14,7 +14,6 @@ import BottomNavigation from "../components/BottomNavigation";
 import { FashionData1, FashionData2 } from "../data/FashionData";
 import SubCategoriesList from "../components/SubCategoriesList";
 import HomeCarousel from "../components/HomeCarousel";
-import Coupon from "../assets/coupon.jpg";
 
 const Home = () => {
   return (
@@ -25,7 +24,7 @@ const Home = () => {
           <CategoriesTab />
           <View style={{ height: 180, marginBottom: 16 }}>
             <SubCategoriesList data={FashionData1} />
-            <SubCategoriesList data={FashionData2} />
+            {/* <SubCategoriesList data={FashionData2} /> */}
           </View>
         </View>
 

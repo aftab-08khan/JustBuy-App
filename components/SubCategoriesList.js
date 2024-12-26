@@ -1,41 +1,67 @@
-import React from "react";
-import {
-  Alert,
-  FlatList,
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-const SubCategoriesList = ({ data }) => {
-  // const Data = data;
+import React, { useEffect, useState } from "react";
+import { FlatList, View, StyleSheet } from "react-native";
+import { useTheme } from "../context/themeContext";
+import CategoryItem from "./CategoryItem";
 
-  const renderItem = ({ item }) => (
-    <TouchableOpacity>
-      <View style={styles.itemContainer}>
-        <View style={styles.imageContainer}>
-          <LinearGradient
-            colors={["#9e8666", "#d1b999", "#ede3d8", "#f9f6f2"]}
-            start={{ x: 0, y: 1 }}
-            end={{ x: 0, y: 0 }}
-            style={styles.gradient}
-          >
-            <Image source={item.image} style={styles.itemImage} />
-          </LinearGradient>
-        </View>
-        <Text style={styles.itemTitle}>{item.title}</Text>
-      </View>
-    </TouchableOpacity>
+const SubCategoriesList = () => {
+  const { allCategoriesData, setAllCategoriesData, isLoading, setIsLoading } =
+    useTheme();
+  const [firstHalf, setFirstHalf] = useState([]);
+  const [secondHalf, setSecondHalf] = useState([]);
+  // console.log(firstHalf, "first");
+
+  useEffect(() => {
+    const fetchCategoriesData = async () => {
+      try {
+        const response = await fetch(
+          "https://aftab-08khan.github.io/JustBuyApi/fashion.json"
+        );
+        const result = await response.json();
+        const combinedData = [
+          {
+            image: require("../assets/icons/fireIcon.png"),
+            title: "Trending",
+            link: "trending",
+          },
+          ...result,
+        ];
+
+        const midpoint = Math.ceil(combinedData.length / 2);
+
+        setFirstHalf(combinedData.slice(0, midpoint));
+        console.log(firstHalf[0]);
+
+        setSecondHalf(combinedData.slice(midpoint));
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
+      }
+    };
+
+    fetchCategoriesData();
+  }, []);
+
+  const renderItem = ({ item, idx }) => (
+    <CategoryItem category={item} key={idx} type={"double"} />
   );
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={data}
+        data={firstHalf}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.id}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.contentContainer}
+      />
+      <FlatList
+        data={secondHalf}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.contentContainer}
@@ -45,42 +71,16 @@ const SubCategoriesList = ({ data }) => {
 };
 
 const styles = StyleSheet.create({
-  contentContainer: {
-    flexDirection: "row",
-  },
   container: {
     flex: 1,
-    marginTop: 8,
+    // marginTop: 8,
     paddingHorizontal: 10,
+    // gap: 12,
   },
-  itemContainer: {
-    marginRight: 20,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  imageContainer: {
-    width: 60,
-    height: 60,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  itemImage: {
-    width: 40,
-    marginTop: 20,
-    height: 80,
-  },
-  itemTitle: {
-    fontSize: 12,
-    fontWeight: 500,
-    textAlign: "center",
-  },
-  gradient: {
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    borderBottomRightRadius: 6,
-    borderBottomLeftRadius: 6,
+  contentContainer: {
+    flexDirection: "row",
+    marginBottom: 2,
+    // backgroundColor: "red",
   },
 });
 

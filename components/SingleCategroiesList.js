@@ -7,7 +7,7 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-
+import CategoryItem from "./CategoryItem.js";
 const SkeletonLoader = () => {
   return (
     <View style={styles.sectionContainer}>
@@ -30,7 +30,6 @@ const SkeletonLoader = () => {
 const SingleCategoriesList = ({ categoriesTitle }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-
   let endpoint = categoriesTitle || "trending";
 
   useEffect(() => {
@@ -92,21 +91,7 @@ const SingleCategoriesList = ({ categoriesTitle }) => {
             <Text style={styles.heading}>{item.heading}</Text>
             <View style={styles.categoryList}>
               {item.categories?.map((category, idx) => (
-                <TouchableOpacity style={styles.item} key={idx}>
-                  <View style={styles.imageView}>
-                    <Image
-                      source={
-                        category.image
-                          ? { uri: category.image }
-                          : require("../assets/icons/fireIcon.png")
-                      }
-                      style={styles.image}
-                    />
-                  </View>
-                  <Text style={styles.categoryName}>
-                    {category.category || "Unknown"}
-                  </Text>
-                </TouchableOpacity>
+                <CategoryItem key={idx} category={category} />
               ))}
             </View>
           </View>
