@@ -85,7 +85,7 @@ export default HomeHeader;
 const styles = StyleSheet.create({
   header: {
     // flex: 1,
-    paddingVertical: 16,
+    paddingVertical: 18,
     paddingHorizontal: 8,
     backgroundColor: "#fff",
   },
@@ -105,15 +105,15 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   logo: {
-    width: 160,
-    height: 50,
+    width: 140,
+    height: 40,
     marginLeft: -16,
     // backgroundColor: "red",
   },
   searchSection: {
     flexDirection: "row",
     backgroundColor: "#f6f6f6",
-    padding: 16,
+    padding: 10,
     borderRadius: 30,
     elevation: 6,
     shadowColor: "#cbb18d",
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.4,
     shadowRadius: 2,
     justifyContent: "space-between",
-    marginTop: 16,
+    marginTop: 8,
   },
   searchIcon: {
     marginRight: 10,

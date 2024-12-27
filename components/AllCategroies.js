@@ -58,6 +58,7 @@ const AllCategories = ({ onPress }) => {
 
     return (
       <TouchableOpacity
+        activeOpacity={0.8}
         style={[
           styles.categoryItem,
           isActive && styles.activeStyle,
@@ -90,9 +91,11 @@ const AllCategories = ({ onPress }) => {
           data={[1, 2, 3, 4, 5, 6, 7]}
           renderItem={() => <SkeletonLoader />}
           keyExtractor={(item) => item.toString()}
+          key={1}
         />
       ) : (
         <FlatList
+          key={2}
           data={allCategoriesData}
           renderItem={renderItem}
           keyExtractor={(item, index) => index.toString()}
@@ -122,9 +125,9 @@ const styles = StyleSheet.create({
   activeBorder: {
     position: "absolute",
     left: 0,
-    top: "16%",
+    top: "8%",
     height: "60%",
-    width: 8,
+    width: 6,
     backgroundColor: "#4f4333",
     borderTopRightRadius: 4,
     borderBottomRightRadius: 4,
@@ -141,18 +144,19 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 8,
     overflow: "hidden",
-    width: "100%",
-    height: 60,
+    width: 70,
+    height: 50,
     justifyContent: "center",
     alignItems: "center",
   },
   categoryImage: {
-    width: 80,
-    height: 60,
+    width: 70,
+    height: 50,
+    objectFit: "cover",
   },
   categoryText: {
     marginTop: 6,
-    fontSize: 14,
+    fontSize: 12,
     color: "#191500",
     letterSpacing: 0.2,
   },

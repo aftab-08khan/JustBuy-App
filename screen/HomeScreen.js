@@ -3,42 +3,54 @@ import {
   Image,
   Keyboard,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
 import HomeHeader from "../components/HomeHeader";
 import CategoriesTab from "../components/CategoriesTab";
 import BottomNavigation from "../components/BottomNavigation";
-import { FashionData1, FashionData2 } from "../data/FashionData";
+import { FashionData1 } from "../data/FashionData";
 import SubCategoriesList from "../components/SubCategoriesList";
 import HomeCarousel from "../components/HomeCarousel";
+import Coupon from "../assets/posters/coupon.jpeg";
+import OfferCard from "../components/OfferScreen";
+import BestSellerSection from "../components/BestSellerSection";
 
 const Home = () => {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
-        <View style={{ flex: 1, paddingHorizontal: 16 }}>
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.mainContent}>
           <HomeHeader />
-          <CategoriesTab />
-          <View style={{ height: 180, marginBottom: 16 }}>
-            <SubCategoriesList data={FashionData1} />
-            {/* <SubCategoriesList data={FashionData2} /> */}
-          </View>
         </View>
+        <ScrollView
+          style={styles.mainContent}
+          showsVerticalScrollIndicator={false}
+        >
+          <TouchableOpacity activeOpacity={1}>
+            <CategoriesTab />
+            <View style={styles.subCategories}>
+              <SubCategoriesList data={FashionData1} />
+            </View>
+            <View style={styles.couponContainer}>
+              <Image source={Coupon} style={styles.couponImage} />
+            </View>
 
-        {/* Coupon Section */}
-        {/* <View style={styles.couponContainer}>
-          <Image source={Coupon} style={styles.couponImage} />
-        </View> */}
+            <View style={styles.carouselContainer}>
+              <HomeCarousel />
+            </View>
+            <View style={{}}>
+              <BestSellerSection />
+              <BestSellerSection />
+              <BestSellerSection />
+            </View>
+          </TouchableOpacity>
+        </ScrollView>
 
-        {/* Carousel Section */}
-        {/* <View style={{ marginBottom: 16 }}> */}
-        <HomeCarousel />
-        {/* </View> */}
-
-        {/* Bottom Navigation */}
         <View style={styles.bottomNavigation}>
           <BottomNavigation />
         </View>
@@ -50,16 +62,33 @@ const Home = () => {
 export default Home;
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: "#fff",
+    paddingBottom: 60, // Space for bottom navigation
+  },
+  mainContent: {
+    paddingHorizontal: 16,
+    // marginBottom: 20,
+    // paddingBottom: 30,
+  },
+  subCategories: {
+    height: 180,
+    marginBottom: 6,
+  },
   couponContainer: {
     // paddingHorizontal: 16,
-    marginBottom: 16,
-    // alignItems: "center",
+    marginBottom: 10,
+    alignItems: "center",
   },
   couponImage: {
     width: "100%",
-    height: 100,
-    resizeMode: "contain",
-    borderRadius: 8,
+    height: 80,
+    resizeMode: "stretch",
+  },
+  carouselContainer: {
+    paddingHorizontal: 16,
+    alignItems: "center",
   },
   bottomNavigation: {
     position: "absolute",

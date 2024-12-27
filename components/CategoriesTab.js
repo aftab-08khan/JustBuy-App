@@ -73,7 +73,7 @@ const CategoriesTab = () => {
       >
         <Ionicons
           name="grid-outline"
-          size={24}
+          size={18}
           color="#3b3226"
           style={styles.menuIcon}
         />
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     borderRadius: 28,
     backgroundColor: "#f1eae2",
     justifyContent: "center",
-    height: 42,
+    height: 36,
     flexDirection: "row",
     paddingHorizontal: 10,
     overflow: "hidden",

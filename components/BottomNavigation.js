@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#f3eee6",
 
-    paddingBottom: 24,
+    paddingBottom: 16,
   },
   navList: {
     justifyContent: "space-around",
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   },
   activeTab: {
     borderTopColor: "#806c00",
-    borderTopWidth: 2,
+    borderTopWidth: 3,
   },
 });
 

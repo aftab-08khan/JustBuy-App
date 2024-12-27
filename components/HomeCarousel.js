@@ -27,24 +27,25 @@ const HomeCarousel = () => {
 
   return (
     <View style={styles.container}>
-      <Carousel
-        ref={carouselRef}
-        loop
-        width={width}
-        height={width / 1.6}
-        autoPlay={false} // Disable autoplay for manual navigation
-        data={carouselData}
-        scrollAnimationDuration={1000}
-        renderItem={({ item }) => (
-          <View style={styles.posterContainer}>
-            <Image source={item.image} style={styles.posterImage} />
-            <Text style={styles.overlayText}>{item.text}</Text>
-          </View>
-        )}
-      />
+      <TouchableOpacity activeOpacity={0.8}>
+        <Carousel
+          ref={carouselRef}
+          loop
+          width={width}
+          height={width / 1.5}
+          autoPlay={true}
+          data={carouselData}
+          scrollAnimationDuration={1000}
+          renderItem={({ item }) => (
+            <View style={styles.posterContainer}>
+              <Image source={item.image} style={styles.posterImage} />
+              <Text style={styles.overlayText}>{item.text}</Text>
+            </View>
+          )}
+        />
+      </TouchableOpacity>
 
-      {/* Navigation Buttons */}
-      <View style={styles.navContainer}>
+      {/* <View style={styles.navContainer}>
         <TouchableOpacity
           style={styles.navButton}
           onPress={() => carouselRef.current?.prev()}
@@ -58,7 +59,7 @@ const HomeCarousel = () => {
         >
           <Text style={styles.navButtonText}>Next</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 };
@@ -66,7 +67,7 @@ const HomeCarousel = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: -32,
+    // marginTop: -32,
     backgroundColor: "#fff",
   },
   posterContainer: {
@@ -98,13 +99,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   navButton: {
-    backgroundColor: "#007bff",
+    // backgroundColor: "#007bff",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
   },
   navButtonText: {
-    color: "#fff",
+    color: "#000",
     fontSize: 16,
     fontWeight: "bold",
   },

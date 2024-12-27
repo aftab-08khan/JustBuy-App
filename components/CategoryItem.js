@@ -27,7 +27,7 @@ const CategoryItem = ({ category, key, type }) => {
         />
       </View>
       <Text
-        style={[category.category ? styles.categoryName : styles.categoryTitle]}
+        style={[type === "double" ? styles.categoryTitle : styles.categoryName]}
       >
         {type === "double" ? category.title : category.category}
       </Text>
@@ -70,10 +70,10 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   categoryTitle: {
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: "bold",
     textAlign: "center",
-    marginTop: 8,
+    marginTop: 4,
   },
 });
 

@@ -51,6 +51,7 @@ const SubCategoriesList = () => {
   return (
     <View style={styles.container}>
       <FlatList
+        key={1}
         data={firstHalf}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
@@ -59,6 +60,7 @@ const SubCategoriesList = () => {
         contentContainerStyle={styles.contentContainer}
       />
       <FlatList
+        key={2}
         data={secondHalf}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
@@ -74,7 +76,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // marginTop: 8,
-    paddingHorizontal: 10,
+    paddingHorizontal: 4,
     // gap: 12,
   },
   contentContainer: {
