@@ -1,12 +1,9 @@
 import React from "react";
 import { TouchableOpacity, View, Text, Image, StyleSheet } from "react-native";
 
-const CategoryItem = ({ category, key, type }) => {
-  return (
-    <TouchableOpacity
-      style={[type === "double" ? styles.item1 : styles.item2]}
-      key={key}
-    >
+const CategoryItem = ({ category, key, type, isLoading }) => {
+  const SkeletonLoader = () => (
+    <View style={[type === "double" ? styles.item1 : styles.item2]}>
       <View
         style={[
           styles.imageView,
@@ -15,22 +12,53 @@ const CategoryItem = ({ category, key, type }) => {
             : { width: 80, height: 80 },
         ]}
       >
-        <Image
-          source={
-            category.img
-              ? { uri: category.img }
-              : category.image
-              ? { uri: category.image }
-              : category.image || category.img
-          }
-          style={styles.image}
-        />
+        <View style={styles.skeletonImage} />
       </View>
-      <Text
-        style={[type === "double" ? styles.categoryTitle : styles.categoryName]}
-      >
-        {type === "double" ? category.title : category.category}
-      </Text>
+      <View style={styles.skeletonTextWrapper}>
+        <View style={styles.skeletonText} />
+      </View>
+    </View>
+  );
+
+  return (
+    <TouchableOpacity
+      style={[type === "double" ? styles.item1 : styles.item2]}
+      key={key}
+    >
+      {isLoading ? (
+        // Render skeleton if data is loading
+        <SkeletonLoader />
+      ) : (
+        // Render actual content after data is loaded
+        <View>
+          <View
+            style={[
+              styles.imageView,
+              type === "double"
+                ? { width: 60, height: 60 }
+                : { width: 80, height: 80 },
+            ]}
+          >
+            <Image
+              source={
+                category.img
+                  ? { uri: category.img }
+                  : category.image
+                  ? { uri: category.image }
+                  : category.image || category.img
+              }
+              style={styles.image}
+            />
+          </View>
+          <Text
+            style={[
+              type === "double" ? styles.categoryTitle : styles.categoryName,
+            ]}
+          >
+            {type === "double" ? category.title : category.category}
+          </Text>
+        </View>
+      )}
     </TouchableOpacity>
   );
 };
@@ -38,14 +66,14 @@ const CategoryItem = ({ category, key, type }) => {
 const styles = StyleSheet.create({
   item1: {
     marginRight: 10,
-    alignItems: "center",
+    // alignItems: "center",
     marginBottom: 15,
     justifyContent: "flex-start",
   },
+
   item2: {
     width: "30%",
     padding: 8,
-    // alignItems: "center",
     marginBottom: 15,
   },
   imageView: {
@@ -74,6 +102,23 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     marginTop: 4,
+  },
+  skeletonImage: {
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#ccc",
+    borderRadius: 50,
+  },
+  skeletonTextWrapper: {
+    width: "100%",
+    alignItems: "center", // Ensures the skeleton text is centered
+    marginTop: 10,
+  },
+  skeletonText: {
+    width: "100%", // This makes sure the skeleton text takes up enough space
+    height: 12,
+    backgroundColor: "#ccc", // Skeleton color
+    borderRadius: 5,
   },
 });
 

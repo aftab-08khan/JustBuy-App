@@ -19,8 +19,13 @@ import HomeCarousel from "../components/HomeCarousel";
 import Coupon from "../assets/posters/coupon.jpeg";
 import OfferCard from "../components/OfferScreen";
 import BestSellerSection from "../components/BestSellerSection";
+import { useTheme } from "../context/themeContext";
 
 const Home = () => {
+  const { isLoading } = useTheme();
+  const SkeletonLoader = () => {
+    <View style={styles.couponImage}></View>;
+  };
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <SafeAreaView style={styles.safeArea}>
@@ -36,9 +41,13 @@ const Home = () => {
             <View style={styles.subCategories}>
               <SubCategoriesList data={FashionData1} />
             </View>
-            <View style={styles.couponContainer}>
-              <Image source={Coupon} style={styles.couponImage} />
-            </View>
+            {isLoading ? (
+              <SkeletonLoader />
+            ) : (
+              <View style={styles.couponContainer}>
+                <Image source={Coupon} style={styles.couponImage} />
+              </View>
+            )}
 
             <View style={styles.carouselContainer}>
               <HomeCarousel />

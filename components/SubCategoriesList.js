@@ -37,7 +37,7 @@ const SubCategoriesList = () => {
       } finally {
         setTimeout(() => {
           setIsLoading(false);
-        }, 1000);
+        }, 2000);
       }
     };
 
@@ -45,7 +45,12 @@ const SubCategoriesList = () => {
   }, []);
 
   const renderItem = ({ item, idx }) => (
-    <CategoryItem category={item} key={idx} type={"double"} />
+    <CategoryItem
+      category={item}
+      key={idx}
+      type={"double"}
+      isLoading={isLoading}
+    />
   );
 
   return (
