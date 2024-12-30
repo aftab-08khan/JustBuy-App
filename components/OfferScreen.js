@@ -4,7 +4,7 @@ import { LinearGradient } from "expo-linear-gradient"; // Add expo-linear-gradie
 
 const OfferCard = ({ rate }) => {
   return (
-    <TouchableOpacity style={styles.cardContainer}>
+    <TouchableOpacity style={styles.cardContainer} activeOpacity={0.8}>
       <LinearGradient
         colors={["#dccbb3", "#d6bfa7", "#544a3f"]}
         style={styles.gradientBackground}
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   cardContainer: {
     width: "30%",
     height: 120,
-    borderRadius: 16,
+    borderRadius: 10,
     overflow: "hidden",
     // margin: 10,
     elevation: 8, // Adds a subtle shadow

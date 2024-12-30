@@ -20,6 +20,7 @@ import Coupon from "../assets/posters/coupon.jpeg";
 import OfferCard from "../components/OfferScreen";
 import BestSellerSection from "../components/BestSellerSection";
 import { useTheme } from "../context/themeContext";
+import MoreDeals from "../components/MoreDeals";
 
 const Home = () => {
   const { isLoading } = useTheme();
@@ -54,9 +55,8 @@ const Home = () => {
             </View>
             <View style={{}}>
               <BestSellerSection />
-              <BestSellerSection />
-              <BestSellerSection />
             </View>
+            <MoreDeals />
           </TouchableOpacity>
         </ScrollView>
 
@@ -74,19 +74,15 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingBottom: 60, // Space for bottom navigation
+    paddingBottom: 60,
   },
   mainContent: {
     paddingHorizontal: 16,
-    // marginBottom: 20,
-    // paddingBottom: 30,
   },
   subCategories: {
     height: 180,
-    marginBottom: 6,
   },
   couponContainer: {
-    // paddingHorizontal: 16,
     marginBottom: 10,
     alignItems: "center",
   },
@@ -94,6 +90,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 80,
     resizeMode: "stretch",
+    backgroundColor: "#ebebeb",
   },
   carouselContainer: {
     paddingHorizontal: 16,

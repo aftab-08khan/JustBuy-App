@@ -3,7 +3,10 @@ import { TouchableOpacity, View, Text, Image, StyleSheet } from "react-native";
 
 const CategoryItem = ({ category, key, type, isLoading }) => {
   const SkeletonLoader = () => (
-    <View style={[type === "double" ? styles.item1 : styles.item2]}>
+    <View
+      style={[type === "double" ? styles.item1 : styles.item2]}
+      key={category.title}
+    >
       <View
         style={[
           styles.imageView,
@@ -23,13 +26,11 @@ const CategoryItem = ({ category, key, type, isLoading }) => {
   return (
     <TouchableOpacity
       style={[type === "double" ? styles.item1 : styles.item2]}
-      key={key}
+      key={category.title}
     >
       {isLoading ? (
-        // Render skeleton if data is loading
         <SkeletonLoader />
       ) : (
-        // Render actual content after data is loaded
         <View>
           <View
             style={[
@@ -111,13 +112,13 @@ const styles = StyleSheet.create({
   },
   skeletonTextWrapper: {
     width: "100%",
-    alignItems: "center", // Ensures the skeleton text is centered
+    alignItems: "center",
     marginTop: 10,
   },
   skeletonText: {
-    width: "100%", // This makes sure the skeleton text takes up enough space
+    width: "100%",
     height: 12,
-    backgroundColor: "#ccc", // Skeleton color
+    backgroundColor: "#ccc",
     borderRadius: 5,
   },
 });

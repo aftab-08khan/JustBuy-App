@@ -10,15 +10,12 @@ import { LinearGradient } from "expo-linear-gradient";
 import OfferCard from "./OfferScreen";
 
 const BestSellerSection = () => {
-  // Shared value for wave animation
   const translateY = useSharedValue(0);
 
-  // Animation effect
   useEffect(() => {
     translateY.value = withRepeat(withTiming(10, { duration: 1000 }), -1, true);
   }, []);
 
-  // Animated text style
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: translateY.value }],
   }));
@@ -26,7 +23,7 @@ const BestSellerSection = () => {
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={["#544a3f", "#d6bfa7", "#dccbb3"]}
+        colors={["#544a3f", "#76654d", "#dccbb3"]}
         style={styles.gradientContainer}
       >
         <Animated.Text style={[styles.headerText, animatedStyle]}>

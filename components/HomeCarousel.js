@@ -19,10 +19,30 @@ const HomeCarousel = () => {
   const carouselRef = useRef(null); // Reference for Carousel
 
   const carouselData = [
-    { id: 1, image: Poster1, text: "Exclusive Offer - Shop Now!" },
-    { id: 2, image: Poster2, text: "New Arrivals - Grab Yours!" },
-    { id: 3, image: Poster1, text: "Best Deals - Limited Time!" },
-    { id: 4, image: Poster4, text: "Trending Now - Explore More!" },
+    {
+      id: 1,
+      image:
+        "https://i.pinimg.com/736x/b7/39/37/b73937eedaa66cdce47079640075c218.jpg",
+      text: "Exclusive Offer - Shop Now!",
+    },
+    {
+      id: 2,
+      image:
+        "https://i.pinimg.com/474x/33/ad/2c/33ad2c8af6c362448ddd1678255dae50.jpg",
+      text: "New Arrivals - Grab Yours!",
+    },
+    {
+      id: 3,
+      image:
+        "https://i.pinimg.com/474x/10/1d/58/101d58f5dd184b6923fcfc986cfe0e02.jpg",
+      text: "Best Deals - Limited Time!",
+    },
+    {
+      id: 4,
+      image:
+        "https://i.pinimg.com/236x/16/b6/46/16b646929bc29d6b5a1a09fccec5cb22.jpg",
+      text: "Trending Now - Explore More!",
+    },
   ];
 
   return (
@@ -32,13 +52,13 @@ const HomeCarousel = () => {
           ref={carouselRef}
           loop
           width={width}
-          height={width / 1.5}
+          height={width / 1.4}
           autoPlay={true}
           data={carouselData}
           scrollAnimationDuration={1000}
           renderItem={({ item }) => (
             <View style={styles.posterContainer}>
-              <Image source={item.image} style={styles.posterImage} />
+              <Image source={{ uri: item.image }} style={styles.posterImage} />
               <Text style={styles.overlayText}>{item.text}</Text>
             </View>
           )}

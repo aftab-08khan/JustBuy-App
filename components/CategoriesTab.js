@@ -11,12 +11,15 @@ import fashionIcon from "../assets/icons/fashionIcon.png";
 import beautyIcon from "../assets/icons/beautyIcon.png";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/core";
+import { useTheme } from "../context/themeContext";
 
 const CategoriesTab = () => {
+  const { setEndpoint } = useTheme();
   const [active, setActive] = useState(0);
   const navigation = useNavigation();
-  const handleTab = (index) => {
+  const handleTab = (index, title) => {
     setActive(index);
+    setEndpoint(title);
   };
 
   const CategoriesTabData = [
@@ -41,9 +44,10 @@ const CategoriesTab = () => {
     const isActive = index === active;
     return (
       <TouchableOpacity
+        activeOpacity={1}
         key={item.id}
         style={[styles.categoriesTabMain, isActive && styles.activeTab]}
-        onPress={() => handleTab(index)}
+        onPress={() => handleTab(index, item.name.toLowerCase())}
       >
         <Image source={item.img} style={styles.image} />
         <Text style={[styles.categoriesText, isActive && styles.activeText]}>

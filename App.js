@@ -8,6 +8,7 @@ import CategoriesScreen from "./screen/CategoriesScreen";
 import CartScreen from "./screen/CartScreen";
 import WishListScreen from "./screen/WishListScreen";
 import { ThemeContext } from "./context/themeContext";
+import SingleProductScreen from "./screen/SingleProductScreen";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -40,6 +41,11 @@ export default function App() {
             <Stack.Screen
               name="WishListScreen"
               component={WishListScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="SingleProductScreen"
+              component={SingleProductScreen}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>

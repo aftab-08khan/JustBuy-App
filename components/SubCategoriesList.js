@@ -4,17 +4,23 @@ import { useTheme } from "../context/themeContext";
 import CategoryItem from "./CategoryItem";
 
 const SubCategoriesList = () => {
-  const { allCategoriesData, setAllCategoriesData, isLoading, setIsLoading } =
-    useTheme();
+  const {
+    allCategoriesData,
+    setAllCategoriesData,
+    isLoading,
+    setIsLoading,
+    endpoint,
+  } = useTheme();
+
   const [firstHalf, setFirstHalf] = useState([]);
   const [secondHalf, setSecondHalf] = useState([]);
-  // console.log(firstHalf, "first");
+  console.log(firstHalf, "half");
 
   useEffect(() => {
     const fetchCategoriesData = async () => {
       try {
         const response = await fetch(
-          "https://aftab-08khan.github.io/JustBuyApi/fashion.json"
+          `https://aftab-08khan.github.io/JustBuyApi/${endpoint}.json`
         );
         const result = await response.json();
         const combinedData = [
@@ -29,7 +35,6 @@ const SubCategoriesList = () => {
         const midpoint = Math.ceil(combinedData.length / 2);
 
         setFirstHalf(combinedData.slice(0, midpoint));
-        console.log(firstHalf[0]);
 
         setSecondHalf(combinedData.slice(midpoint));
       } catch (error) {
