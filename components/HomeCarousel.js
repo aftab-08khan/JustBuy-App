@@ -8,16 +8,11 @@ import {
   StyleSheet,
 } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
-import Poster1 from "../assets/posters/poster1.jpg";
-import Poster2 from "../assets/posters/poster2.jpg";
-import Poster3 from "../assets/posters/poster3.webp";
-import Poster4 from "../assets/posters/poster4.jpg";
 
 const HomeCarousel = () => {
   const { width } = Dimensions.get("window");
 
-  const carouselRef = useRef(null); // Reference for Carousel
-
+  const carouselRef = useRef(null);
   const carouselData = [
     {
       id: 1,

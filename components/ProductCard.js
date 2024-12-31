@@ -12,8 +12,9 @@ import {
 import Ionicons from "react-native-vector-icons/Ionicons";
 import * as Notifications from "expo-notifications";
 import { useNavigation } from "@react-navigation/native";
+import SkeletonLoader from "./SkeletonLoader";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, isLoading }) => {
   const imagesArray = product.images.split(" ~ ");
   const [activeWishlist, setActiveWishlist] = useState(false);
 
@@ -70,7 +71,13 @@ const ProductCard = ({ product }) => {
       trigger: null,
     });
   };
-
+  useEffect(() => {
+    setTimeout(() => {
+      if (isLoading) {
+        return <SkeletonLoader />;
+      }
+    }, 1000);
+  }, []);
   return (
     <TouchableOpacity
       activeOpacity={0.7}

@@ -10,7 +10,7 @@ const MoreDeals = () => {
   const renderItem = ({ item }) => {
     return (
       <View style={styles.itemContainer}>
-        <ProductCard product={item} />
+        <ProductCard product={item} isLoading={!moreDealsProducts} />
       </View>
     );
   };

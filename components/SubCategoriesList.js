@@ -14,7 +14,6 @@ const SubCategoriesList = () => {
 
   const [firstHalf, setFirstHalf] = useState([]);
   const [secondHalf, setSecondHalf] = useState([]);
-  console.log(firstHalf, "half");
 
   useEffect(() => {
     const fetchCategoriesData = async () => {
