@@ -12,6 +12,7 @@ import SingleProductDetails from "../components/SingleProductDetails";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import CartAndWishList from "../components/CartAndWishList";
+import BottomBar from "../components/BottomBar";
 const SingleProductScreen = ({ route }) => {
   const { product } = route.params;
   const navigation = useNavigation();
@@ -40,6 +41,11 @@ const SingleProductScreen = ({ route }) => {
           <SingleProductDetails product={product} />
         </TouchableOpacity>
       </ScrollView>
+      <BottomBar
+        onWishlistPress={() => console.log("Wishlist added")}
+        onBuyNowPress={() => console.log("Buy Now clicked")}
+        onAddToBagPress={() => console.log("Added to Bag")}
+      />
     </SafeAreaView>
   );
 };

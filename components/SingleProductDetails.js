@@ -64,24 +64,6 @@ const SingleProductDetails = ({ product }) => {
   const finalPrice = Math.floor(discount - extraOff);
   return (
     <View style={styles.container}>
-      {/* Header */}
-
-      {/* <TouchableOpacity activeOpacity={0.8}> */}
-      {/* <Carousel
-        loop
-        width={width}
-        height={width / 0.7}
-        autoPlay={false}
-        data={carouselData}
-        scrollAnimationDuration={1000}
-        renderItem={({ item }) => (
-          <View style={styles.posterContainer}>
-            <Image source={{ uri: item.image }} style={styles.posterImage} />
-            <Text style={styles.overlayText}>{item.text}</Text>
-          </View>
-        )}
-      /> */}
-      {/* </TouchableOpacity> */}
       <CarouselModal carouselData={carouselData} />
       <View style={styles.content}>
         <Text style={styles.title}>{product.brand}</Text>
