@@ -1,14 +1,17 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import WishlistIcon from "./WishlistIcon";
 
-const BottomBar = ({ onWishlistPress, onBuyNowPress, onAddToBagPress }) => {
+const BottomBar = ({
+  product,
+  onWishlistPress,
+  onBuyNowPress,
+  onAddToBagPress,
+}) => {
   return (
     <View style={styles.bottomBar}>
-      <TouchableOpacity style={styles.wishlistButton} onPress={onWishlistPress}>
-        <Ionicons name="heart-outline" size={24} color="#3f372f" />
-      </TouchableOpacity>
-
+      <WishlistIcon product={product} size={30} />
       <View style={styles.actionsContainer}>
         <TouchableOpacity style={styles.buyNowButton} onPress={onBuyNowPress}>
           <Text style={styles.buyNowText}>Buy Now</Text>
@@ -35,7 +38,7 @@ const styles = StyleSheet.create({
     right: 0,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     backgroundColor: "#eee5d9",
     paddingVertical: 20,
     paddingHorizontal: 16,
@@ -45,7 +48,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: -2 },
     shadowOpacity: 0.2,
     shadowRadius: 6,
-    elevation: 10, // For Android shadow
+    elevation: 10,
     paddingBottom: 34,
   },
   wishlistButton: {
@@ -58,11 +61,11 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
-    elevation: 4, // For Android shadow
+    elevation: 4,
   },
   actionsContainer: {
     flexDirection: "row",
-    gap: 12,
+    gap: 10,
   },
   buyNowButton: {
     backgroundColor: "#fefdfc",
@@ -75,7 +78,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
-    elevation: 4, // For Android shadow
+    elevation: 4,
   },
   buyNowText: {
     color: "#2a251f",
@@ -91,7 +94,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
-    elevation: 4, // For Android shadow
+    elevation: 4,
   },
   addToBagText: {
     color: "#fff",

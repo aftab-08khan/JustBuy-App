@@ -10,7 +10,11 @@ const MoreDeals = () => {
   const renderItem = ({ item }) => {
     return (
       <View style={styles.itemContainer}>
-        <ProductCard product={item} isLoading={!moreDealsProducts} />
+        <ProductCard
+          product={item}
+          isLoading={!moreDealsProducts}
+          key={item.brand}
+        />
       </View>
     );
   };
@@ -20,7 +24,7 @@ const MoreDeals = () => {
       <Text style={styles.heading}>Explore More Deals</Text>
 
       <FlatList
-        data={moreDealsProducts?._j?.slice(0, 100) || []}
+        data={moreDealsProducts?._j?.slice(0, 200) || []}
         numColumns={2}
         keyExtractor={(item) => item.sku.toString()}
         renderItem={renderItem}

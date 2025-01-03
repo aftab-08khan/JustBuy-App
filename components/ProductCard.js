@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -6,78 +6,23 @@ import {
   StyleSheet,
   Dimensions,
   TouchableOpacity,
-  Animated,
-  Platform,
 } from "react-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import * as Notifications from "expo-notifications";
 import { useNavigation } from "@react-navigation/native";
+import WishlistIcon from "./WishlistIcon";
 import SkeletonLoader from "./SkeletonLoader";
 
 const ProductCard = ({ product, isLoading }) => {
   const imagesArray = product.images.split(" ~ ");
-  const [activeWishlist, setActiveWishlist] = useState(false);
-
-  const scaleAnim = useRef(new Animated.Value(1)).current;
   const navigation = useNavigation();
-  useEffect(() => {
-    const requestPermissions = async () => {
-      const { status } = await Notifications.requestPermissionsAsync();
-      if (status !== "granted") {
-        alert("Notification permission not granted");
-      }
-    };
 
-    requestPermissions();
-  }, []);
-
-  const handleWishlist = async () => {
-    Animated.sequence([
-      Animated.timing(scaleAnim, {
-        toValue: 1.5,
-        duration: 200,
-        useNativeDriver: true,
-      }),
-      Animated.timing(scaleAnim, {
-        toValue: 1,
-        duration: 200,
-        useNativeDriver: true,
-      }),
-    ]).start();
-
-    setActiveWishlist((prev) => !prev);
-    Notifications.setNotificationHandler({
-      handleNotification: async () => ({
-        shouldShowAlert: true,
-        shouldPlaySound: true,
-        shouldSetBadge: false,
-      }),
-    });
-    Notifications.scheduleNotificationAsync({
-      content: {
-        title: !activeWishlist ? "Added to Wishlist" : "Removed from Wishlist",
-        body: `${product.name} is now ${
-          activeWishlist ? "in" : "out of"
-        } your wishlist.`,
-        sound: true,
-        ios: {
-          icon: require("../assets/icon.png"),
-        },
-        android: {
-          icon: require("../assets/icon.png"),
-          color: "#8a765a",
-        },
-      },
-      trigger: null,
-    });
-  };
   useEffect(() => {
     setTimeout(() => {
       if (isLoading) {
         return <SkeletonLoader />;
       }
     }, 1000);
-  }, []);
+  }, [isLoading]);
+
   return (
     <TouchableOpacity
       activeOpacity={0.7}
@@ -104,19 +49,7 @@ const ProductCard = ({ product, isLoading }) => {
           >
             <Text style={styles.productBrand}>{product.brand}</Text>
             <View style={styles.iconWrapper}>
-              <TouchableOpacity activeOpacity={0.2} onPress={handleWishlist}>
-                <Animated.View style={{ transform: [{ scale: scaleAnim }] }}>
-                  {activeWishlist === true ? (
-                    <Ionicons name="heart" size={20} color={"red"} />
-                  ) : (
-                    <Ionicons
-                      name="heart-outline"
-                      size={20}
-                      color={"#4f4333"}
-                    />
-                  )}
-                </Animated.View>
-              </TouchableOpacity>
+              <WishlistIcon product={product} />
             </View>
           </View>
           <Text
